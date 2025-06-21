@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>Index - Logis Bootstrap Template</title>
+  <title></title>
   <meta name="description" content="">
   <meta name="keywords" content="">
 
@@ -24,6 +24,9 @@
   <link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
   <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
   <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+  
+
 
   <!-- Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
@@ -50,14 +53,28 @@
 
       <nav id="navmenu" class="navmenu">
         <ul>
-          <li><a href="{{ route('main') }}">Home<br></a></li>
-          <li><a href="{{ route('about') }}" class="active">About</a></li>
+          <li><a href="{{ route('main') }}"  class="active">Home<br></a></li>
+          <li><a href="{{ route('about') }}">About</a></li>
           <li><a href="{{ route('events')}}">Events</a></li>
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
 
-      <a class="btn-getstarted" href="get-a-quote.html">Logout</a>
+       @auth
+          <div class="dropdown ms-auto">
+              <button class="d-flex align-items-center profile-dropdown-button" type="button" id="profile-button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <img src="{{ asset('assets/img/Foto Profil.png') }}" alt="Profile" class="rounded-circle me-2" style="width: 32px; height: 32px; object-fit: cover;">
+                  <span class="text-sm font-semibold text-white">{{ Auth::user()->name }}</span>
+              </button>
+              <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profile-button">
+                      <form method="POST" action="{{ route('logout') }}">
+                          @csrf
+                          <button type="submit" class="dropdown-item">Logout</button>
+                      </form>
+                  </li>
+              </ul>
+          </div>
+      @endauth
 
     </div>
   </header>
@@ -65,63 +82,66 @@
   <main class="main">
 
     <!-- Hero Section -->
-    <section id="hero" class="hero section dark-background">
+<section id="hero" class="hero section dark-background position-relative">
 
-      <img src="assets/img/world-dotted-map.png" alt="" class="hero-bg" data-aos="fade-in">
+  <!-- Background image -->
+  <img src="assets/img/NFEST(5).jpg" alt="" class="hero-bg" data-aos="fade-in" style="object-fit: cover; width: 100%; height: 100%; position: absolute; top: 0; left: 0; z-index: 1;">
 
-      <div class="container">
-        <div class="row gy-4 d-flex justify-content-between">
-          <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center">
-            <h2 data-aos="fade-up">Your Lightning Fast Delivery Partner</h2>
-            <p data-aos="fade-up" data-aos-delay="100">Facere distinctio molestiae nisi fugit tenetur repellat non praesentium nesciunt optio quis sit odio nemo quisquam. eius quos reiciendis eum vel eum voluptatem eum maiores eaque id optio ullam occaecati odio est possimus vel reprehenderit</p>
+  <!-- Overlay -->
+  <div class="overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 2;"></div>
 
-            <form action="#" class="form-search d-flex align-items-stretch mb-3" data-aos="fade-up" data-aos-delay="200">
-              <input type="text" class="form-control" placeholder="Your ZIP code or City. e.g. New York">
-              <button type="submit" class="btn btn-primary">Search</button>
-            </form>
+  <div class="container position-relative" style="z-index: 3;">
+    <div class="row gy-4 d-flex justify-content-between">
+      
+      <!-- Kiri: Teks dan ikon -->
+      <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center">
+        <h2 data-aos="fade-up">Your Go to Events News Website</h2>
+        <p data-aos="fade-up" data-aos-delay="100">
+          Facere distinctio molestiae nisi fugit tenetur repellat non praesentium nesciunt optio quis sit odio nemo quisquam. eius quos reiciendis eum vel eum voluptatem eum maiores eaque id optio ullam occaecati odio est possimus vel reprehenderit
+        </p>
 
-            <div class="row gy-4" data-aos="fade-up" data-aos-delay="300">
-
-              <div class="col-lg-3 col-6">
-                <div class="stats-item text-center w-100 h-100">
-                  <span data-purecounter-start="0" data-purecounter-end="232" data-purecounter-duration="0" class="purecounter">232</span>
-                  <p>Clients</p>
-                </div>
-              </div><!-- End Stats Item -->
-
-              <div class="col-lg-3 col-6">
-                <div class="stats-item text-center w-100 h-100">
-                  <span data-purecounter-start="0" data-purecounter-end="521" data-purecounter-duration="0" class="purecounter">521</span>
-                  <p>Projects</p>
-                </div>
-              </div><!-- End Stats Item -->
-
-              <div class="col-lg-3 col-6">
-                <div class="stats-item text-center w-100 h-100">
-                  <span data-purecounter-start="0" data-purecounter-end="1453" data-purecounter-duration="0" class="purecounter">1453</span>
-                  <p>Support</p>
-                </div>
-              </div><!-- End Stats Item -->
-
-              <div class="col-lg-3 col-6">
-                <div class="stats-item text-center w-100 h-100">
-                  <span data-purecounter-start="0" data-purecounter-end="32" data-purecounter-duration="0" class="purecounter">32</span>
-                  <p>Workers</p>
-                </div>
-              </div><!-- End Stats Item -->
-
+        <!-- Ikon-ikon -->
+        <div class="row gy-4" data-aos="fade-up" data-aos-delay="300">
+          <div class="col-lg-3 col-6">
+            <div class="stats-item text-center w-100 h-100">
+              <i class="bi bi-people-fill display-4 text-white"></i>
+              <p>ORMAWA</p>
             </div>
-
           </div>
 
-          <div class="col-lg-5 order-1 order-lg-2 hero-img" data-aos="zoom-out">
-            <img src="assets/img/hero-img.svg" class="img-fluid mb-3 mb-lg-0" alt="">
+          <div class="col-lg-3 col-6">
+            <div class="stats-item text-center w-100 h-100">
+              <i class="bi bi-mortarboard-fill display-4 text-white"></i>
+              <p>UKM</p>
+            </div>
           </div>
 
+          <div class="col-lg-3 col-6">
+            <div class="stats-item text-center w-100 h-100">
+              <i class="bi bi-building display-4 text-white"></i>
+              <p>KAMPUS</p>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-6">
+            <div class="stats-item text-center w-100 h-100">
+              <i class="bi bi-globe display-4 text-white"></i>
+              <p>EKSTERNAL</p>
+            </div>
+          </div>
         </div>
       </div>
 
-    </section><!-- /Hero Section -->
+      <!-- Kanan: Logo -->
+      <div class="col-lg-5 order-1 order-lg-2 hero-img" data-aos="zoom-out">
+        <img src="assets/img/NFest-logo.png" class="img-fluid mb-3 mb-lg-0" alt="">
+      </div>
+
+    </div>
+  </div>
+
+</section><!-- /Hero Section -->
+
 
  
     <!-- About Section -->
@@ -178,7 +198,7 @@
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
         <span>PAST EVENTS<br></span>
-        <h2>Our ServiceS</h2>
+        <h2>Most Recent Held Events On Campus</h2>
         <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
       </div><!-- End Section Title -->
 
@@ -191,7 +211,7 @@
               <div class="card-img">
                 <img src="assets/img/NFEST(4).jpg" alt="" class="img-fluid">
               </div>
-              <h3>Storage</h3>
+              <h3>Build With AI</h3>
               <p>Cumque eos in qui numquam. Aut aspernatur perferendis sed atque quia voluptas quisquam repellendus temporibus itaqueofficiis odit</p>
             </div>
           </div><!-- End Card Item -->
@@ -587,6 +607,12 @@
         Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a> Distributed by <a href=“https://themewagon.com>ThemeWagon
       </div>
     </div>
+    @if(session('error'))
+    <div class="alert alert-danger">
+        {{ session('error') }}
+    </div>
+@endif
+
 
   </footer>
 
@@ -606,7 +632,27 @@
 
   <!-- Main JS File -->
   <script src="assets/js/main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const hash = window.location.hash;
+      if (hash && document.querySelector(hash)) {
+        document.querySelector(hash).scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  </script>
 
+<script>
+    // JavaScript for toggling the profile dropdown
+        document.getElementById('profile-button').addEventListener('click', function () {
+        const profileMenu = document.getElementById('profile-menu');
+        profileMenu.classList.toggle('hidden');
+    });
+</script>
+<style>
+        html {
+          scroll-behavior: smooth;
+        }
+      </style>
 </body>
-
+ 
 </html>

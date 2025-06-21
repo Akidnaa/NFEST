@@ -57,7 +57,21 @@
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
 
-      <a class="btn-getstarted" href="get-a-quote.html">Logout</a>
+       @auth
+          <div class="dropdown ms-auto">
+              <button class="d-flex align-items-center profile-dropdown-button" type="button" id="profile-button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <img src="{{ asset('assets/img/Foto Profil.png') }}" alt="Profile" class="rounded-circle me-2" style="width: 32px; height: 32px; object-fit: cover;">
+                  <span class="text-sm font-semibold text-white">{{ Auth::user()->name }}</span>
+              </button>
+              <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profile-button">
+                      <form method="POST" action="{{ route('logout') }}">
+                          @csrf
+                          <button type="submit" class="dropdown-item">Logout</button>
+                      </form>
+                  </li>
+              </ul>
+          </div>
+      @endauth
 
     </div>
   </header>

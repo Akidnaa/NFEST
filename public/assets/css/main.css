@@ -21,8 +21,8 @@
 :root { 
   --background-color: #ffffff; /* Background color for the entire website, including individual sections */
   --default-color: #212529; /* Default color used for the majority of the text content across the entire website */
-  --heading-color: #001973; /* Color for headings, subheadings and title throughout the website */
-  --accent-color: #0d42ff; /* Accent color that represents your brand on the website. It's used for buttons, links, and other elements that need to stand out */
+  --heading-color: #212529; /* Color for headings, subheadings and title throughout the website */
+  --accent-color: #212529; /* Accent color that represents your brand on the website. It's used for buttons, links, and other elements that need to stand out */
   --surface-color: #ffffff; /* The surface color is used as a background of boxed elements within sections, such as cards, icon boxes, or other elements that require a visual separation from the global background. */
   --contrast-color: #ffffff; /* Contrast color for text, ensuring readability against backgrounds of accent, heading, or default colors. */
 }
@@ -34,7 +34,7 @@
   --nav-mobile-background-color: #ffffff; /* Used as the background color for mobile navigation menu */
   --nav-dropdown-background-color: #ffffff; /* Used as the background color for dropdown items that appear when hovering over primary navigation items */
   --nav-dropdown-color: #212529; /* Used for navigation links of the dropdown items in the navigation menu. */
-  --nav-dropdown-hover-color: #0d42ff; /* Similar to --nav-hover-color, this color is applied to dropdown navigation links when they are hovered over. */
+  --nav-dropdown-hover-color: #212529; /* Similar to --nav-hover-color, this color is applied to dropdown navigation links when they are hovered over. */
 }
 
 /* Color Presets - These classes override global colors when applied to any section or element, providing reuse of the sam color scheme. */
@@ -45,12 +45,36 @@
 }
 
 .dark-background {
-  --background-color: #0e1d34;
+  --background-color: #212529;
   --default-color: #ffffff;
   --heading-color: #ffffff;
-  --surface-color: #19335c;
+  --surface-color: #FFB245;
   --contrast-color: #ffffff;
 }
+
+/* Pastikan kode ini berada di bagian paling bawah file main.css kamu,
+   setelah semua import atau aturan lain, agar memiliki prioritas lebih tinggi. */
+
+.profile-dropdown-button span {
+    color: white !important; /* Membuat teks nama pengguna menjadi putih */
+}
+
+/* Ini adalah aturan CSS yang sebelumnya kita gunakan, pastikan ini ada dan tidak ditimpa: */
+.profile-dropdown-button {
+    background: none !important;
+    border: none !important;
+    padding: 0 !important;
+    /* Hapus baris ini jika ada: color: inherit; */
+}
+
+.profile-dropdown-button:hover,
+.profile-dropdown-button:focus,
+.profile-dropdown-button:active {
+    background: none !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
 
 /* Smooth scroll */
 :root {

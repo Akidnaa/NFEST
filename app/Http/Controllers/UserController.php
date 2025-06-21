@@ -44,10 +44,11 @@ class UserController extends Controller
     }
 
     // Menampilkan detail user
-    public function show(User $user)
-    {
-        return view('users.show', compact('user'));
-    }
+    public function show($id)
+{
+    $user = User::findOrFail($id);
+    return view('dashboard.users.show', compact('user'));
+}
 
     // Menampilkan form edit user
     public function edit(User $user)

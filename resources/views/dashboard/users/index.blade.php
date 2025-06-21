@@ -3,9 +3,7 @@
         <div class="dashboard-body">
             <div class="d-flex justify-content-between align-items-center mb-4">
                 <h4 class="fw-bold">Daftar Pengguna</h4>
-                <a href="{{ route('users.create') }}" class="btn btn-success">
-                    <i class="fas fa-plus"></i> Tambah Pengguna
-                </a>
+                {{-- Tombol tambah pengguna di-nonaktifkan --}}
             </div>
 
             <table id="userTable" class="table table-striped table-hover">
@@ -34,18 +32,7 @@
                                 <a href="{{ route('users.show', $user->id) }}" class="btn btn-primary btn-sm">
                                     <i class="far fa-eye"></i> Lihat
                                 </a>
-
-                                <a href="{{ route('users.edit', $user->id) }}" class="btn btn-warning btn-sm">
-                                    <i class="far fa-edit"></i> Edit
-                                </a>
-
-                                <form action="{{ route('users.destroy', $user->id) }}" method="POST" class="d-inline delete-form" onsubmit="return confirm('Yakin ingin menghapus pengguna ini?')">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger btn-sm">
-                                        <i class="far fa-trash-alt"></i> Hapus
-                                    </button>
-                                </form>
+                                {{-- Edit dan hapus di-nonaktifkan --}}
                             </td>
                         </tr>
                     @empty

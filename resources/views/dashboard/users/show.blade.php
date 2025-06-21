@@ -1,70 +1,39 @@
 <x-layout>
     <x-slot name="page_content">
-        <div class="container" style="min-height: calc(100vh - 150px); display: flex; align-items: center; justify-content: center;">
-            <div class="row align-items-center w-100">
-                <!-- Gambar -->
-                <div class="col-md-4 text-center">
-                    <img src="{{ asset('admin/images/6.svg') }}" alt="User Image" 
-                        class="img-fluid rounded-circle shadow-lg" 
-                        style="width: 200px; height: 200px; object-fit: cover;">
-                </div>
+        <div class="container py-4">
+            <h4 class="fw-bold mb-4">Detail Pengguna</h4>
 
-                <!-- Data -->
-                <div class="col-md-8">
-                    <div class="card shadow-lg p-4">
-                        <h5 class="card-title mb-30 mt-20 text-center">Detail Pengguna</h5>
-                         @php
-                            $gender = $user->jenis_kelamin == 'L' ? 'Laki - Laki' : 'Perempuan';
-                            $tanggal_lahir = \Carbon\Carbon::parse($user->tanggal_lahir)->format('d/m/Y');
-                        @endphp
+            <div class="card shadow rounded-3">
+                <div class="card-body">
+                    <div class="text-center mb-4">
+                        <img src="{{ asset('admin/images/6.svg') }}" alt="Foto Profil"
+                            class="rounded-circle mb-2" style="width: 100px; height: 100px;">
+                        <h5 class="fw-bold text-gray-800">{{ $user->name }}</h5>
+                        <p class="text-muted mb-0">{{ $user->email }}</p>
+                        <span class="badge bg-primary mt-2">{{ ucfirst($user->role ?? 'pengguna') }}</span>
+                    </div>
 
-                        <!-- Nama -->
-                        <div class="card m-20 border border-gray-200 shadow-sm p-15 rounded">
-                            <span><strong class="text-secondary">Nama:  </strong>{{ $user->name }}</span>
-                        </div>
-                        <!-- Nama -->
-                        <div class="card m-20 border border-gray-200 shadow-sm p-15 rounded">
-                            <span><strong class="text-secondary">NIK:  </strong>{{ $user->nik }}</span>
-                        </div>
-                        <!-- Nama -->
-                        <div class="card m-20 border border-gray-200 shadow-sm p-15 rounded">
-                            <span><strong class="text-secondary">Jenis Kelamin:  </strong>{{ $gender }}</span>
-                        </div>
-                        <!-- Nama -->
-                        <div class="card m-20 border border-gray-200 shadow-sm p-15 rounded">
-                            <span><strong class="text-secondary">Nomor Telepon:  </strong>{{ $user->no_telp }}</span>
-                        </div>
-                        <!-- Nama -->
-                        <div class="card m-20 border border-gray-200 shadow-sm p-15 rounded">
-                            <span><strong class="text-secondary">Tanggal Lahir:  </strong>{{ $tanggal_lahir }}</span>
-                        </div>
-                        
-                        
-                        <!-- Email -->
-                        <div class="card m-20 border border-gray-200 shadow-sm p-15 rounded">
-                            <span><strong class="text-secondary">Email:  </strong>{{ $user->email }}</span>
-                        </div>
-                        
-                        <!-- Role -->
-                        <div class="card m-20 border border-gray-200 shadow-sm p-15 rounded">
-                            <span><strong class="text-secondary">Role:  </strong>{{ $user->role }}</span>
-                        </div>
+                    <hr>
 
-                        <!-- Tombol Kembali -->
-                        <div class="text-center mt-4 mb-10">
-                            <a href="{{ url('dashboard/users') }}" class="btn btn-primary">Kembali</a>
-                            <form action="{{ route('users.destroy', $user->id) }}" method="POST" class="d-inline delete-form">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger btn-delete">
-                                    <i class="far fa-trash-alt"></i> Hapus
-                                </button>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label text-gray-600">Nama Lengkap</label>
+                            <div class="form-control bg-light">{{ $user->name }}</div>
                         </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label text-gray-600">Email</label>
+                            <div class="form-control bg-light">{{ $user->email }}</div>
+                        </div>
+                        {{-- Tambahkan kolom lainnya jika ada seperti gender, alamat, dll --}}
+                    </div>
+
+                    <div class="mt-4">
+                        <a href="{{ route('users.index') }}" class="btn btn-secondary">
+                            <i class="fas fa-arrow-left"></i> Kembali ke Daftar
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
-
-   
     </x-slot>
 </x-layout>
